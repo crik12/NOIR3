@@ -1,0 +1,191 @@
+/* =============================================
+   NOIR — RESPONSIVE MÓVIL
+   Pega esto AL FINAL de tu style.css,
+   reemplazando el bloque @media que ya tienes.
+   ============================================= */
+
+/* ========= TABLET (800px) ========= */
+@media (max-width: 800px) {
+  :root {
+    --sidebar-w: 0px;
+    --player-h: 130px; /* más alto en móvil para 2 filas */
+  }
+
+  /* Ocultar sidebar lateral */
+  .sidebar { display: none; }
+
+  /* Grid de 1 columna */
+  body {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr var(--player-h);
+    grid-template-areas:
+      "main"
+      "player";
+  }
+
+  /* Títulos más pequeños */
+  .hero-title { font-size: 40px; }
+  .playlist-name { font-size: 32px; }
+
+  /* Playlist hero en columna */
+  .playlist-hero {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 28px 20px 24px;
+  }
+  .playlist-cover-big { width: 140px; height: 140px; }
+  .playlist-actions { justify-content: center; }
+
+  /* Views con menos padding */
+  .view { padding: 20px 16px 16px; }
+
+  /* Cards más pequeñas */
+  .card-grid {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 10px;
+  }
+
+  /* Track row simplificado */
+  .track-row {
+    grid-template-columns: 44px 1fr 36px;
+    gap: 10px;
+  }
+  .track-num { display: none; }
+  .track-duration { display: none; }
+  .track-add-btn { opacity: 1; } /* siempre visible en móvil */
+
+  /* Player bar en 2 filas */
+  .player-bar {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    padding: 10px 16px 8px;
+    gap: 6px;
+  }
+  .player-right { display: none; } /* sin volumen en móvil */
+
+  /* Player info compacta */
+  .player-info { gap: 10px; }
+  .player-cover { width: 44px; height: 44px; }
+  .player-title { font-size: 12px; }
+  .player-artist { font-size: 11px; }
+
+  /* Controles centrados */
+  .player-center { width: 100%; }
+  .player-controls { gap: 4px; }
+  .ctrl-btn { width: 32px; height: 32px; font-size: 13px; }
+  .play-btn { width: 40px; height: 40px; font-size: 15px; }
+
+  /* Barra de progreso más táctil */
+  .progress-bar-bg { height: 4px; }
+  .progress-range { height: 28px; } /* área táctil más grande */
+
+  /* Modal ocupa más pantalla */
+  .modal { width: calc(100vw - 32px); }
+
+  /* Toast más arriba por el player */
+  .toast { bottom: 145px; }
+
+  /* Topbar compacto */
+  .topbar { padding: 10px 16px; }
+  .topbar-left { gap: 4px; }
+}
+
+/* ========= MÓVIL PEQUEÑO (480px) ========= */
+@media (max-width: 480px) {
+  :root { --player-h: 120px; }
+
+  .hero-title { font-size: 32px; letter-spacing: -1px; }
+  .hero-sub { font-size: 13px; }
+  .section-title { font-size: 16px; }
+
+  .view { padding: 16px 12px 12px; }
+
+  /* Cards en 2 columnas fijas */
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  /* Track row aún más simple */
+  .track-row {
+    grid-template-columns: 40px 1fr 32px;
+    gap: 8px;
+    padding: 6px 8px;
+  }
+  .track-thumb { width: 36px; height: 36px; }
+  .track-title { font-size: 13px; }
+  .track-artist { font-size: 11px; }
+
+  /* Player mínimo */
+  .player-bar { padding: 8px 12px 6px; }
+  .player-cover { width: 40px; height: 40px; border-radius: 6px; }
+  .fav-btn { display: none; } /* ocultar like en player bar */
+
+  /* Controles más juntos */
+  .player-controls { gap: 2px; }
+  .ctrl-btn { width: 30px; height: 30px; font-size: 12px; }
+  .play-btn { width: 38px; height: 38px; }
+
+  /* Playlist hero pequeño */
+  .playlist-cover-big { width: 110px; height: 110px; font-size: 40px; }
+  .playlist-name { font-size: 26px; }
+  .playlist-meta { font-size: 12px; }
+
+  .topbar { padding: 8px 12px; }
+  .search-bar { padding: 6px 12px; }
+  .search-bar input { font-size: 13px; }
+
+  .toast { bottom: 135px; font-size: 12px; padding: 8px 16px; }
+}
+
+/* ========= MENÚ INFERIOR MÓVIL (nav bar tipo app) ========= */
+@media (max-width: 800px) {
+
+  /* Agregar espacio abajo del main para el nav */
+  .main { padding-bottom: 56px; }
+
+  /* Barra de navegación inferior */
+  .mobile-nav {
+    display: flex;
+    position: fixed;
+    bottom: var(--player-h);
+    left: 0; right: 0;
+    height: 56px;
+    background: var(--bg-1);
+    border-top: 1px solid var(--border);
+    z-index: 50;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0 8px;
+  }
+
+  .mobile-nav-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    background: none;
+    border: none;
+    color: var(--text-3);
+    font-family: 'Syne', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    padding: 6px 16px;
+    border-radius: 10px;
+    transition: color var(--transition);
+    -webkit-tap-highlight-color: transparent;
+  }
+  .mobile-nav-btn.active { color: var(--purple-lt); }
+  .mobile-nav-btn span.icon { font-size: 20px; line-height: 1; }
+
+  /* El nav de sidebar se oculta - usamos el móvil */
+  .sidebar-nav { display: none; }
+}
+
+/* Ocultar nav móvil en desktop */
+@media (min-width: 801px) {
+  .mobile-nav { display: none; }
+}

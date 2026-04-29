@@ -965,12 +965,3 @@ body {
 
 /* ========= RESPONSIVE ========= */
 
-@media (max-width: 800px) {
-  :root { --sidebar-w: 0px; }
-  .sidebar { display: none; }
-  body { grid-template-columns: 1fr; }
-  .hero-title { font-size: 40px; }
-  .playlist-name { font-size: 32px; }
-  .player-bar { grid-template-columns: 1fr; padding: 8px 16px; }
-  .player-right { display: none; }
-}

@@ -118,11 +118,37 @@ const App = (() => {
           activePlaylistId = null;
           document.querySelectorAll(".playlist-item").forEach(el => el.classList.remove("active"));
         }
+        
       });
     });
 
     document.getElementById("goBack").addEventListener("click", () => history.back());
     document.getElementById("goForward").addEventListener("click", () => history.forward());
+    // ---- Nav móvil inferior ----
+    document.querySelectorAll(".mobile-nav-btn[data-view]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const view = btn.dataset.view;
+        if (view === "library") renderLibrary();
+        showView(view);
+        // Sincronizar estado activo en nav móvil
+        document.querySelectorAll(".mobile-nav-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        // Sincronizar también el nav del sidebar
+        document.querySelectorAll(".nav-btn").forEach(b => {
+          b.classList.toggle("active", b.dataset.view === view);
+        });
+        if (view !== "playlist") {
+          activePlaylistId = null;
+          document.querySelectorAll(".playlist-item").forEach(el => el.classList.remove("active"));
+        }
+      });
+    });
+
+    // Botón + Playlist del nav móvil
+    document.getElementById("mobileNewPlaylist")?.addEventListener("click", () => {
+      document.getElementById("playlistNameInput").value = "";
+      UI.openModal("newPlaylistModal");
+    });
   }
 
   // ---- Player buttons ----
